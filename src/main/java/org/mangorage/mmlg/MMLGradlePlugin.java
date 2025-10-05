@@ -7,6 +7,11 @@ import org.mangorage.mmlg.tasks.RunGame;
 public final class MMLGradlePlugin implements Plugin<Project> {
     @Override
     public void apply(Project project) {
+        project.getConfigurations().create("modJar", t -> {
+            t.setVisible(true);
+            t.setTransitive(false);
+        });
+
         project.getConfigurations().create("gameJar", t -> {
             t.setVisible(true);
             t.setTransitive(false);
