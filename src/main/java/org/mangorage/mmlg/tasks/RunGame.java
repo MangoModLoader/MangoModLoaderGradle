@@ -15,6 +15,8 @@ public class RunGame extends JavaExec {
 
 
     public static Path getAll(Path input) {
+        if (input.toString().contains("-all")) return input;
+
         String filename = input.getFileName().toString();
         int dotIndex = filename.lastIndexOf('.');
         String newFilename = (dotIndex != -1)
