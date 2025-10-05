@@ -1,0 +1,57 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+group = 'org.mangorage'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    compileOnly gradleApi()
+}
+
+test {
+    useJUnitPlatform()
+}
+
+publishing {
+    publications.register("mmlgradle", MavenPublication) {
+        artifact jar
+//        artifact sourcesJar
+//        artifact javadocJar
+
+        pom {
+            name = 'MangoRage Mod Loader'
+            description = 'MangoRage Mod Loader Gradle for generating MC Sources/running the loader!'
+            url = 'https://github.com/MangoRageBot/MangoBot'
+            issueManagement {
+                system = 'github'
+                url = 'https://github.com/MangoRageBot/MangoBot/issues'
+            }
+            developers {
+                developer {
+                    id = 'mangorage'
+                    name = 'MangoRage'
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            url = "https://maven.mangorage.org/releases/"
+
+            credentials {
+                username = System.getenv("MAVEN_USER")
+                password = System.getenv("MAVEN_PASSWORD")
+            }
+        }
+    }
+}
