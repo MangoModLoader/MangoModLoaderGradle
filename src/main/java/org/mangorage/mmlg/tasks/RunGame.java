@@ -28,8 +28,10 @@ public class RunGame extends JavaExec {
         Path modsDir = runDir.resolve("mods");
         Path classpathDir = runDir.resolve("classpath-game");
 
-        Path bootJar = getAll(getProject().getConfigurations().getByName("bootJar").getSingleFile().toPath());
+        Path bootJar = getProject().getConfigurations().getByName("bootJar").getSingleFile().toPath();
         Path mcJar = getProject().getConfigurations().getByName("gameJar").getSingleFile().toPath();
+
+        System.out.println(bootJar);
 
         getProject().getConfigurations().getByName("modJar").getFiles().forEach(file -> {
             try {
